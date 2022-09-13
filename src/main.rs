@@ -75,16 +75,10 @@ fn get_name() -> Vec<String> {
     let mut names: Vec<String> = vec![];
     let mut p1: String = String::new();
     println!("Insert player 1's name:");
-    stdin()
-        .read_line(&mut p1)
-        .ok()
-        .expect("Failed to read");
+    stdin().read_line(&mut p1).ok().expect("Failed to read");
     let mut p2: String = String::new();
     println!("Insert player 2's name:");
-    stdin()
-        .read_line(&mut p2)
-        .ok()
-        .expect("Failed to read");
+    stdin().read_line(&mut p2).ok().expect("Failed to read");
     names.push(p1);
     names.push(p2);
     names
@@ -146,7 +140,6 @@ fn print_board(state: &Vec<Vec<Flag>>) {
     println!("      A   B   C  ");
     println!();
     println!();
-    
 }
 fn play() {
     println!("Only insert co-ordinates in text bar or the whole game will break");
@@ -166,7 +159,7 @@ fn play() {
                 println!("{} - Your turn", names[0]);
             }
             false => {
-                println!("{} - Your turn", names[1]);
+                print!("{} - Your turn", names[1]);
             }
         }
         board_state = change_state(board_state, &player, get_move());
