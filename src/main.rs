@@ -1,9 +1,14 @@
+//Importing package that gets user input while app is running
 use std::io::stdin;
+
+//Used to identify what each cell in the board should be populated with
 enum Flag {
     P1,
     P2,
     Empty,
 }
+
+//Blank board with all empty states
 fn fresh_state() -> Vec<Vec<Flag>> {
     vec![
         vec![Flag::Empty, Flag::Empty, Flag::Empty],
@@ -11,6 +16,8 @@ fn fresh_state() -> Vec<Vec<Flag>> {
         vec![Flag::Empty, Flag::Empty, Flag::Empty],
     ]
 }
+
+//Get user input and return it as a number vector
 fn get_move() -> Vec<usize> {
     let mut player_move: String = String::new();
     stdin()
@@ -25,6 +32,9 @@ fn get_move() -> Vec<usize> {
         'A' => {}
         'B' => {}
         'C' => {}
+        'a' => {}
+        'b' => {}
+        'c' => {}
         _ => {
             println!("Oops, you said {first}, Please use a valid letter from A to C, as a capital");
             get_move();
@@ -51,6 +61,15 @@ fn get_move() -> Vec<usize> {
         'C' => {
             coords.push(2);
         }
+        'a' => {
+            coords.push(0);
+        }
+        'b' => {
+            coords.push(1);
+        }
+        'c' => {
+            coords.push(2);
+        }
         _ => {
             println!("Fatal Error, coords var in get_move not working")
         }
@@ -71,6 +90,8 @@ fn get_move() -> Vec<usize> {
     }
     coords
 }
+
+//Gets the names of the players and returns it as a string vector
 fn get_name() -> Vec<String> {
     let mut names: Vec<String> = vec![];
     let mut p1: String = String::new();
@@ -83,6 +104,8 @@ fn get_name() -> Vec<String> {
     names.push(p2);
     names
 }
+
+//Changes the state of a given state grid and returns it as a new vector
 fn change_state(mut state: Vec<Vec<Flag>>, flag: &bool, pos: Vec<usize>) -> Vec<Vec<Flag>> {
     match flag {
         true => {
@@ -94,6 +117,8 @@ fn change_state(mut state: Vec<Vec<Flag>>, flag: &bool, pos: Vec<usize>) -> Vec<
     }
     state
 }
+
+//Takes one of the three states and returns a given "Mark" to be written on the board
 fn load_player(player: &Flag) -> Vec<String> {
     let mut mark: Vec<String> = vec![];
     match player {
@@ -115,6 +140,8 @@ fn load_player(player: &Flag) -> Vec<String> {
     }
     mark
 }
+
+//Takes a board state grid and prints a board with it
 fn print_board(state: &Vec<Vec<Flag>>) {
     let mut count: u8 = 3;
     println!();
@@ -141,6 +168,8 @@ fn print_board(state: &Vec<Vec<Flag>>) {
     println!();
     println!();
 }
+
+//Uses all functions so that the game may be played in the main loop
 fn play() {
     println!("Only insert co-ordinates in text bar or the whole game will break");
     println!("and you will need to restart. Only use capital letters!");
@@ -166,6 +195,8 @@ fn play() {
         print_board(&board_state);
     }
 }
+
+//Calls our game function in the main function
 fn main() {
     play();
 }
