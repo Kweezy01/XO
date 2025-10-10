@@ -50,6 +50,7 @@ fn get_move() -> Vec<usize> {
         }
     }
     println!("Move sent");
+    clearscreen::clear().expect("Failed to clear");
     let mut coords: Vec<usize> = vec![];
     match first {
         'A' => {
@@ -200,3 +201,4 @@ fn play() {
 fn main() {
     play();
 }
+
